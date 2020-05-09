@@ -20,29 +20,32 @@ export default {
   components: {
     File
   },
-  props: { showName: Boolean },
+  props: {
+    index: Number,
+    subFolder: Object
+  },
   data() {
     return {
-      name: "SubFolder",
-      files: [
-        { name: "hola", text: "adios" },
-        { name: "hi", text: "bye" }
-      ]
+      showName: false,
+      name: this.subFolder.name,
+      files: this.subFolder.files
     };
   },
   methods: {
     showNameInput() {
       this.showName = !this.showName;
+      this.$emit("updateSubFolder", this);
     },
     updateFile(file) {
       this.files[file.index] = file;
+      this.$emit("updateSubFolder", this);
     }
   }
 };
 </script>
 
 <style scoped>
-.file {
+.subFolder {
   width: 100%;
   background-color: chartreuse;
 }

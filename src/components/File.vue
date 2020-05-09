@@ -26,18 +26,17 @@ export default {
   methods: {
     textChanged() {
       this.showTextInput();
-      this.$emit('updateFile', this);
+      this.$emit("updateFile", this);
     },
     nameChanged() {
       this.showNameInput();
-      this.$emit('updateFile', this);
+      this.$emit("updateFile", this);
     },
     showNameInput() {
       this.showName = !this.showName;
     },
     showTextInput() {
       this.showText = !this.showText;
-
     }
   }
 };
