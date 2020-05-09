@@ -11,11 +11,11 @@
 <script>
 export default {
   name: "File",
-  props: [],
+  props: ["showName", "showText"],
   data() {
     return {
-      showName: false,
-      showText: false
+      name: this.name,
+      text: this.text
     };
   },
   methods: {
