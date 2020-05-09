@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
-  <File />
+  <SubFolder showName="false" />
   </div>
 </template>
 
 <script>
-import File from './File.vue'
+import SubFolder from './SubFolder.vue'
 
 export default {
   name: 'HelloWorld',
@@ -13,7 +13,7 @@ export default {
     msg: String
   },
   components: {
-    File
+     SubFolder
   }
 }
 </script>

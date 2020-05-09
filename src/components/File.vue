@@ -11,11 +11,16 @@
 <script>
 export default {
   name: "File",
-  props: ["showName", "showText"],
+  props: {
+    showName: Boolean,
+    showText: Boolean,
+    fileName: String,
+    fileText: String
+  },
   data() {
     return {
-      name: this.name,
-      text: this.text
+      name: this.fileName,
+      text: this.fileText
     };
   },
   methods: {
@@ -32,6 +37,6 @@ export default {
 <style scoped>
 .file {
   width: 100%;
-  background-color:beige;
+  background-color: beige;
 }
 </style>>
