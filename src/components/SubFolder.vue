@@ -4,12 +4,11 @@
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
     <br />
     <File
-      v-for="file in files"
+      v-for="(file, index) in files"
       v-bind:key="file"
-      v-bind:fileName="file.name"
-      v-bind:fileText="file.text"
-      showName="false"
-      showText="true"
+      v-bind:file="file"
+      v-bind:index="index"
+      v-on:updateFile="updateFile"
     />
   </div>
 </template>
@@ -34,6 +33,9 @@ export default {
   methods: {
     showNameInput() {
       this.showName = !this.showName;
+    },
+    updateFile(file) {
+      this.files[file.index] = file;
     }
   }
 };
