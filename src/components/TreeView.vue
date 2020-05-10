@@ -38,8 +38,6 @@ export default {
       this.nodes.push(newNode);
     },
     updateNode(node, index) {
-      console.log(node);
-      console.log(index);
       this.nodes[index] = node;
     },
     deleteNode(index) {
