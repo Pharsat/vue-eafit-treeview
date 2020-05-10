@@ -1,6 +1,6 @@
 <template>
   <div class="subFolder" @dblclick.prevent.self="toggleChildView">
-    <span v-show="showName" @click="showNameInput">{{name}}</span>
+    <span v-show="showName">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
     <br />
     <button @click="deleteMySelf">Delete node</button>
@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     showNameInput() {
-      this.showName = !this.showName;
+      this.showName = true;
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     createNewFile() {

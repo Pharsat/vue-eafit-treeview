@@ -1,6 +1,6 @@
 <template>
   <div class="node" @dblclick.prevent.self="toggleChildView">
-    <span v-show="showName" @click="showNameInput">{{name}}</span>
+    <span v-show="showName">{{name}}</span>
     <input
       v-show="!showName"
       type="text"
@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     showNameInput() {
-      this.showName = !this.showName;
+      this.showName = true;
       this.$emit("updateNode", this.me(), this.index);
     },
     createNewSubFolder() {
