@@ -49,6 +49,9 @@ export default {
         ]
       };
       this.nodes.push(newNode);
+    },
+    updateNode(node) {
+      this.node[node.index] = node;
     }
   }
 };
