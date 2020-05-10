@@ -38,7 +38,11 @@ export default {
   methods: {
     showNameInput() {
       this.showName = !this.showName;
-      this.$emit("updateSubFolder", this);
+      this.$emit(
+        "updateSubFolder",
+        { name: this.name, files: this.files },
+        this.index
+      );
     },
     createNewFile() {
       var newFile = {
@@ -47,15 +51,19 @@ export default {
       };
       this.files.push(newFile);
     },
-    updateFile(file) {
-      this.files[file.index] = file;
-      this.$emit("updateSubFolder", this);
+    updateFile(file, index) {
+      this.files[index] = file;
+      this.$emit(
+        "updateSubFolder",
+        { name: this.name, files: this.files },
+        this.index
+      );
     },
     deleteMySelf() {
-      this.$emit("deleteSubFolder", this);
+      this.$emit("deleteSubFolder", this.index);
     },
-    deleteFile(file) {
-      this.files.splice(file.index, 1);
+    deleteFile(index) {
+      this.files.splice(index, 1);
     }
   }
 };

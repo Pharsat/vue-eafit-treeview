@@ -2,6 +2,7 @@
   <div class="treeView">
     <input type="text" v-model="nodeName" />
     <button @click="createNewNode" :disabled="this.nodes.length > 0">Create root node</button>
+    <button @click="storeJson">Store to local storage</button>
     <br />
     <Node
       v-for="(node, index) in nodes"
@@ -36,11 +37,16 @@ export default {
       };
       this.nodes.push(newNode);
     },
-    updateNode(node) {
-      this.nodes[node.index] = node;
+    updateNode(node, index) {
+      console.log(node);
+      console.log(index);
+      this.nodes[index] = node;
     },
-    deleteNode(node) {
-      this.nodes.splice(node.index, 1);
+    deleteNode(index) {
+      this.nodes.splice(index, 1);
+    },
+    storeJson() {
+      localStorage.setItem("treeView", JSON.stringify(this.nodes));
     }
   }
 };
