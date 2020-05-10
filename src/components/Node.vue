@@ -27,23 +27,8 @@ export default {
   data() {
     return {
       showName: false,
-      name: "Nodo",
-      subFolders: [
-        {
-          name: "subFolder",
-          files: [
-            { name: "hola", text: "adios" },
-            { name: "hi", text: "bye" }
-          ]
-        },
-        {
-          name: "subFolder",
-          files: [
-            { name: "hola", text: "adios" },
-            { name: "hi", text: "bye" }
-          ]
-        }
-      ]
+      name: this.node.name,
+      subFolders: this.node.subFolders
     };
   },
   methods: {
@@ -52,8 +37,6 @@ export default {
     },
     updateSubFolder(subFolder) {
       this.subFolders[subFolder.index] = subFolder;
-      console.log(subFolder.name);
-      console.log(subFolder.files);
     }
   }
 };

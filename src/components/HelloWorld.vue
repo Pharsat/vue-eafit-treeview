@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
-  <Node showName="false" />
+  <TreeView  />
   </div>
 </template>
 
 <script>
-import Node from './Node.vue'
+import TreeView from './TreeView.vue'
 
 export default {
   name: 'HelloWorld',
@@ -13,7 +13,7 @@ export default {
     msg: String
   },
   components: {
-     Node
+     TreeView
   }
 }
 </script>
