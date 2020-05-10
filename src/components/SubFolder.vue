@@ -3,12 +3,16 @@
     <span v-show="showName" @click="showNameInput">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
     <br />
+    <button @click="deleteMySelf">Delete node</button>
+    <button @click="createNewFile">Create file</button>
+    <br />
     <File
       v-for="(file, index) in files"
       v-bind:key="file"
       v-bind:file="file"
       v-bind:index="index"
       v-on:updateFile="updateFile"
+      v-on:deleteFile="deleteFile"
     />
   </div>
 </template>
@@ -36,9 +40,22 @@ export default {
       this.showName = !this.showName;
       this.$emit("updateSubFolder", this);
     },
+    createNewFile() {
+      var newFile = {
+        name: "",
+        text: ""
+      };
+      this.files.push(newFile);
+    },
     updateFile(file) {
       this.files[file.index] = file;
       this.$emit("updateSubFolder", this);
+    },
+    deleteMySelf() {
+      this.$emit("deleteSubFolder", this);
+    },
+    deleteFile(file) {
+      this.files.splice(file.index, 1);
     }
   }
 };

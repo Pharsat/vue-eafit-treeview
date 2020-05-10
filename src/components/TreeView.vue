@@ -9,6 +9,7 @@
       v-bind:node="node"
       v-bind:index="index"
       v-on:updateNode="updateNode"
+      v-on:deleteNode="deleteNode"
     />
   </div>
 </template>
@@ -30,28 +31,16 @@ export default {
   methods: {
     createNewNode() {
       var newNode = {
-        name: this.nodeName,
-        subFolders: [
-          {
-            name: "subFolder",
-            files: [
-              { name: "hola", text: "adios" },
-              { name: "hi", text: "bye" }
-            ]
-          },
-          {
-            name: "subFolder",
-            files: [
-              { name: "hola", text: "adios" },
-              { name: "hi", text: "bye" }
-            ]
-          }
-        ]
+        name: "",
+        subFolders: []
       };
       this.nodes.push(newNode);
     },
     updateNode(node) {
-      this.node[node.index] = node;
+      this.nodes[node.index] = node;
+    },
+    deleteNode(node) {
+      this.nodes.splice(node.index, 1);
     }
   }
 };

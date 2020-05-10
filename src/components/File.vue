@@ -3,6 +3,8 @@
     <span v-show="showName" @click="showNameInput">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="nameChanged" />
     <br />
+    <button @click="deleteMySelf">Delete file</button>
+    <br />
     <span v-show="showText" @dblclick="showTextInput">{{text}}</span>
     <textarea v-show="!showText" v-model="text" @keyup.enter="textChanged" />
   </div>
@@ -37,6 +39,9 @@ export default {
     },
     showTextInput() {
       this.showText = !this.showText;
+    },
+    deleteMySelf() {
+      this.$emit("deleteFile", this);
     }
   }
 };
