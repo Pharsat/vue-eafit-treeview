@@ -8,7 +8,7 @@
     <br />
     <SubFolder
       v-for="(subFolder, index) in subFolders"
-      v-bind:key="subFolder"
+      v-bind:key="index"
       v-bind:subFolder="subFolder"
       v-bind:index="index"
       v-on:updateSubFolder="updateSubFolder"

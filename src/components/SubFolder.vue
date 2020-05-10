@@ -8,7 +8,7 @@
     <br />
     <File
       v-for="(file, index) in files"
-      v-bind:key="file"
+      v-bind:key="index"
       v-bind:file="file"
       v-bind:index="index"
       v-on:updateFile="updateFile"

@@ -1,11 +1,11 @@
 <template>
   <div class="treeView">
     <input type="text" v-model="nodeName" />
-    <button @click="createNewNode">Create root node</button>
+    <button @click="createNewNode" :disabled="this.nodes.length > 0">Create root node</button>
     <br />
     <Node
       v-for="(node, index) in nodes"
-      v-bind:key="node"
+      v-bind:key="index"
       v-bind:node="node"
       v-bind:index="index"
       v-on:updateNode="updateNode"
