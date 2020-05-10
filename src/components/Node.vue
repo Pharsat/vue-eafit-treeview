@@ -1,19 +1,27 @@
 <template>
-  <div class="node">
+  <div class="node" @dblclick.prevent.self="toggleChildView">
     <span v-show="showName" @click="showNameInput">{{name}}</span>
-    <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
+    <input
+      v-show="!showName"
+      type="text"
+      v-model="name"
+      @keyup.enter="showNameInput"
+      placeholder="Enter the node name here, then press enter"
+    />
     <br />
     <button @click="deleteMySelf">Delete node</button>
     <button @click="createNewSubFolder">Create sub folder</button>
     <br />
-    <SubFolder
-      v-for="(subFolder, index) in subFolders"
-      v-bind:key="index"
-      v-bind:subFolder="subFolder"
-      v-bind:index="index"
-      v-on:updateSubFolder="updateSubFolder"
-      v-on:deleteSubFolder="deleteSubFolder"
-    />
+    <div v-show="showSubFolders">
+      <SubFolder
+        v-for="(subFolder, index) in subFolders"
+        v-bind:key="index"
+        v-bind:subFolder="subFolder"
+        v-bind:index="index"
+        v-on:updateSubFolder="updateSubFolder"
+        v-on:deleteSubFolder="deleteSubFolder"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -30,6 +38,7 @@ export default {
   },
   data() {
     return {
+      showSubFolders: true,
       showName: false,
       name: this.node.name,
       subFolders: this.node.subFolders
@@ -38,11 +47,7 @@ export default {
   methods: {
     showNameInput() {
       this.showName = !this.showName;
-      this.$emit(
-        "updateNode",
-        { name: this.name, subFolders: this.subFolders },
-        this.index
-      );
+      this.$emit("updateNode", this.me(), this.index);
     },
     createNewSubFolder() {
       var newSubFolder = {
@@ -53,17 +58,22 @@ export default {
     },
     updateSubFolder(subFolder, index) {
       this.subFolders[index] = subFolder;
-      this.$emit(
-        "updateNode",
-        { name: this.name, subFolders: this.subFolders },
-        this.index
-      );
+      this.$emit("updateNode", this.me(), this.index);
     },
     deleteMySelf() {
       this.$emit("deleteNode", this.index);
     },
     deleteSubFolder(index) {
       this.subFolders.splice(index, 1);
+    },
+    me() {
+      return {
+        name: this.name,
+        subFolders: this.subFolders
+      };
+    },
+    toggleChildView() {
+      this.showSubFolders = !this.showSubFolders;
     }
   }
 };

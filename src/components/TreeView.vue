@@ -1,6 +1,5 @@
 <template>
   <div class="treeView">
-    <input type="text" v-model="nodeName" />
     <button @click="createNewNode" :disabled="this.nodes.length > 0">Create root node</button>
     <button @click="storeJson">Store to local storage</button>
     <br />
@@ -25,7 +24,6 @@ export default {
   props: {},
   data() {
     return {
-      nodeName: "",
       nodes: []
     };
   },

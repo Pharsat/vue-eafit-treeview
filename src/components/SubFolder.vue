@@ -1,19 +1,21 @@
 <template>
-  <div class="subFolder">
+  <div class="subFolder" @dblclick.prevent.self="toggleChildView">
     <span v-show="showName" @click="showNameInput">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
     <br />
     <button @click="deleteMySelf">Delete node</button>
     <button @click="createNewFile">Create file</button>
     <br />
-    <File
-      v-for="(file, index) in files"
-      v-bind:key="index"
-      v-bind:file="file"
-      v-bind:index="index"
-      v-on:updateFile="updateFile"
-      v-on:deleteFile="deleteFile"
-    />
+    <div v-show="showFiles">
+      <File
+        v-for="(file, index) in files"
+        v-bind:key="index"
+        v-bind:file="file"
+        v-bind:index="index"
+        v-on:updateFile="updateFile"
+        v-on:deleteFile="deleteFile"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -30,6 +32,7 @@ export default {
   },
   data() {
     return {
+      showFiles: true,
       showName: false,
       name: this.subFolder.name,
       files: this.subFolder.files
@@ -38,11 +41,7 @@ export default {
   methods: {
     showNameInput() {
       this.showName = !this.showName;
-      this.$emit(
-        "updateSubFolder",
-        { name: this.name, files: this.files },
-        this.index
-      );
+      this.$emit("updateSubFolder", this.me(), this.index);
     },
     createNewFile() {
       var newFile = {
@@ -53,17 +52,22 @@ export default {
     },
     updateFile(file, index) {
       this.files[index] = file;
-      this.$emit(
-        "updateSubFolder",
-        { name: this.name, files: this.files },
-        this.index
-      );
+      this.$emit("updateSubFolder", this.me(), this.index);
     },
     deleteMySelf() {
       this.$emit("deleteSubFolder", this.index);
     },
     deleteFile(index) {
       this.files.splice(index, 1);
+    },
+    me() {
+      return {
+        name: this.name,
+        files: this.files
+      };
+    },
+    toggleChildView() {
+      this.showFiles = !this.showFiles;
     }
   }
 };

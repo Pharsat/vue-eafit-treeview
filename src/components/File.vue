@@ -28,20 +28,11 @@ export default {
   methods: {
     textChanged() {
       this.showTextInput();
-      this.$emit(
-        "updateFile",
-        { name: this.name, text: this.text },
-        this.index
-      );
+      this.$emit("updateFile", this.me(), this.index);
     },
     nameChanged() {
       this.showNameInput();
-
-      this.$emit(
-        "updateFile",
-        { name: this.name, text: this.text },
-        this.index
-      );
+      this.$emit("updateFile", this.me(), this.index);
     },
     showNameInput() {
       this.showName = !this.showName;
@@ -51,6 +42,12 @@ export default {
     },
     deleteMySelf() {
       this.$emit("deleteFile", this.index);
+    },
+    me() {
+      return {
+        name: this.name,
+        text: this.text
+      };
     }
   }
 };
