@@ -51,6 +51,7 @@ export default {
       this.files.push(newFile);
     },
     updateFile(file, index) {
+      console.log(file);
       this.files[index] = file;
       this.$emit("updateSubFolder", this.me(), this.index);
     },

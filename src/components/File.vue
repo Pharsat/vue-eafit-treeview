@@ -1,17 +1,19 @@
 <template>
-  <div class="file">
+  <div :id="uniqueName" class="file">
     <span v-show="showName" @dblclick.prevent.self="showTextInput">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="nameChanged" />
-    <br />
-    <button @click="deleteMySelf">Delete file</button> <button @click="showEditText">Edit Text</button>
-    <br />
     <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
     <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" />
-    <button v-show="showTextArea" @click="textChanged">Save file</button> 
+    <ejs-contextmenu :target="'#'+uniqueName" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
+import { ContextMenuPlugin } from "@syncfusion/ej2-vue-navigations";
+
+Vue.use(ContextMenuPlugin);
+
 export default {
   name: "File",
   props: {
@@ -24,7 +26,16 @@ export default {
       showText: false,
       showTextArea: false,
       name: this.file.name,
-      text: this.file.text
+      text: this.file.text,
+      menuItems: [
+        {
+          text: "Delete file"
+        },
+        {
+          text: "Modify file"
+        }
+      ],
+      uniqueName: "file" + this.index
     };
   },
   methods: {
@@ -36,7 +47,7 @@ export default {
       this.showNameInput();
       this.$emit("updateFile", this.me(), this.index);
     },
-    showNameInput() {      
+    showNameInput() {
       this.showName = true;
     },
     showTextInput() {
@@ -45,7 +56,7 @@ export default {
     deleteMySelf() {
       this.$emit("deleteFile", this.index);
     },
-    showEditText(){
+    showEditText() {
       this.showTextArea = true;
       this.showText = false;
     },
@@ -54,12 +65,24 @@ export default {
         name: this.name,
         text: this.text
       };
+    },
+    onSelect: function(args) {
+      if (args.item.text === this.menuItems[0].text) {
+        this.deleteMySelf();
+      } else if (args.item.text === this.menuItems[1].text) {
+        this.showEditText();
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
 .file {
   width: 100%;
   background-color: beige;
