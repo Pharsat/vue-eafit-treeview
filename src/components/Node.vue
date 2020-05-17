@@ -15,7 +15,7 @@
     <div v-show="showSubFolders">
       <SubFolder
         v-for="(subFolder, index) in subFolders"
-        v-bind:key="index"
+        v-bind:key="subFolder.id"
         v-bind:subFolder="subFolder"
         v-bind:index="index"
         v-on:updateSubFolder="updateSubFolder"
@@ -41,7 +41,8 @@ export default {
       showSubFolders: true,
       showName: false,
       name: this.node.name,
-      subFolders: this.node.subFolders
+      subFolders: this.node.subFolders,
+      id: this.node.id
     };
   },
   methods: {
@@ -50,24 +51,32 @@ export default {
       this.$emit("updateNode", this.me(), this.index);
     },
     createNewSubFolder() {
+      var nextIds = this.subFolders.map(function(subFolder) {
+        return subFolder.id;
+      });
+      var maxCollection = [...nextIds, 0];
       var newSubFolder = {
+        id: Math.max.apply(Math, maxCollection) + 1,
         name: "",
         files: []
       };
       this.subFolders.push(newSubFolder);
     },
     updateSubFolder(subFolder, index) {
-      this.subFolders[index] = subFolder;
+      this.$set(this.subFolders, index, subFolder);
       this.$emit("updateNode", this.me(), this.index);
     },
     deleteMySelf() {
-      this.$emit("deleteNode", this.index);
+      this.$emit("deleteNode", this.me());
     },
-    deleteSubFolder(index) {
-      this.subFolders.splice(index, 1);
+    deleteSubFolder(subFolder) {
+      this.subFolders = this.subFolders.filter(function(item) {
+        return item.id != subFolder.id;
+      });
     },
     me() {
       return {
+        id: this.id,
         name: this.name,
         subFolders: this.subFolders
       };

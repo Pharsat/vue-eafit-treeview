@@ -8,10 +8,10 @@
     <br />
     <div v-show="showFiles">
       <File
-        v-for="(file, index) in files"
-        v-bind:key="index"
-        v-bind:file="file"
+        v-for="(file,index) in files"
+        :key="file.id"
         v-bind:index="index"
+        v-bind:file="file"
         v-on:updateFile="updateFile"
         v-on:deleteFile="deleteFile"
       />
@@ -35,7 +35,8 @@ export default {
       showFiles: true,
       showName: false,
       name: this.subFolder.name,
-      files: this.subFolder.files
+      files: this.subFolder.files,
+      id: this.subFolder.id
     };
   },
   methods: {
@@ -44,25 +45,32 @@ export default {
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     createNewFile() {
+      var nextIds = this.files.map(function(file) {
+        return file.id;
+      });
+      var maxCollection = [...nextIds, 0];
       var newFile = {
+        id: Math.max.apply(Math, maxCollection) + 1,
         name: "",
         text: ""
       };
       this.files.push(newFile);
     },
     updateFile(file, index) {
-      console.log(file);
-      this.files[index] = file;
+      this.$set(this.files, index, file);
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     deleteMySelf() {
-      this.$emit("deleteSubFolder", this.index);
+      this.$emit("deleteSubFolder", this.me());
     },
-    deleteFile(index) {
-      this.files.splice(index, 1);
+    deleteFile(file) {
+      this.files = this.files.filter(function(item) {
+        return item.id != file.id;
+      });
     },
     me() {
       return {
+        id: this.id,
         name: this.name,
         files: this.files
       };
