@@ -1,11 +1,7 @@
 <template>
-  <div class="subFolder" @dblclick.prevent.self="toggleChildView">
+  <div :id="'subFolderContextMenu'+id" class="subFolder" @dblclick.prevent.self="toggleChildView">
     <span v-show="showName">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
-    <br />
-    <button @click="deleteMySelf">Delete node</button>
-    <button @click="createNewFile">Create file</button>
-    <br />
     <div v-show="showFiles">
       <File
         v-for="(file,index) in files"
@@ -16,10 +12,15 @@
         v-on:deleteFile="deleteFile"
       />
     </div>
+    <ejs-contextmenu :target="'#subFolderContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
 <script>
 import File from "./File.vue";
+import Vue from "vue";
+import { ContextMenuPlugin } from "@syncfusion/ej2-vue-navigations";
+
+Vue.use(ContextMenuPlugin);
 
 export default {
   name: "SubFolder",
@@ -36,6 +37,14 @@ export default {
       showName: false,
       name: this.subFolder.name,
       files: this.subFolder.files,
+      menuItems: [
+        {
+          text: "Delete subfolder"
+        },
+        {
+          text: "Add file"
+        }
+      ],
       id: this.subFolder.id
     };
   },
@@ -77,6 +86,13 @@ export default {
     },
     toggleChildView() {
       this.showFiles = !this.showFiles;
+    },
+    onSelect: function(args) {
+      if (args.item.text === this.menuItems[0].text) {
+        this.deleteMySelf();
+      } else if (args.item.text === this.menuItems[1].text) {
+        this.createNewFile();
+      }
     }
   }
 };

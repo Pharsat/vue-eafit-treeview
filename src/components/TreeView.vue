@@ -1,7 +1,6 @@
 <template>
   <div class="treeView">
     <button @click="createNewNode" :disabled="this.nodes.length > 0">Create root node</button>
-    <button @click="storeJson">Store to local storage</button>
     <br />
     <Node
       v-for="(node, index) in nodes"
@@ -42,6 +41,7 @@ export default {
     },
     updateNode(node, index) {
       this.$set(this.nodes, index, node);
+      this.storeJson();
     },
     deleteNode(node) {
       this.nodes = this.nodes.filter(function(item) {

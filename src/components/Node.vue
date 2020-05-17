@@ -1,5 +1,5 @@
 <template>
-  <div class="node" @dblclick.prevent.self="toggleChildView">
+  <div :id="'nodeContextMenu'+id" class="node" @dblclick.prevent.self="toggleChildView">
     <span v-show="showName">{{name}}</span>
     <input
       v-show="!showName"
@@ -8,10 +8,6 @@
       @keyup.enter="showNameInput"
       placeholder="Enter the node name here, then press enter"
     />
-    <br />
-    <button @click="deleteMySelf">Delete node</button>
-    <button @click="createNewSubFolder">Create sub folder</button>
-    <br />
     <div v-show="showSubFolders">
       <SubFolder
         v-for="(subFolder, index) in subFolders"
@@ -22,10 +18,15 @@
         v-on:deleteSubFolder="deleteSubFolder"
       />
     </div>
+    <ejs-contextmenu :target="'#nodeContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
 <script>
 import SubFolder from "./SubFolder.vue";
+import Vue from "vue";
+import { ContextMenuPlugin } from "@syncfusion/ej2-vue-navigations";
+
+Vue.use(ContextMenuPlugin);
 
 export default {
   name: "Node",
@@ -42,6 +43,14 @@ export default {
       showName: false,
       name: this.node.name,
       subFolders: this.node.subFolders,
+      menuItems: [
+        {
+          text: "Delete tree"
+        },
+        {
+          text: "Add subfolder"
+        }
+      ],
       id: this.node.id
     };
   },
@@ -83,6 +92,13 @@ export default {
     },
     toggleChildView() {
       this.showSubFolders = !this.showSubFolders;
+    },
+    onSelect: function(args) {
+      if (args.item.text === this.menuItems[0].text) {
+        this.deleteMySelf();
+      } else if (args.item.text === this.menuItems[1].text) {
+        this.createNewSubFolder();
+      }
     }
   }
 };

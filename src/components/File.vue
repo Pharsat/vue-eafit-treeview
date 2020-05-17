@@ -1,10 +1,10 @@
 <template>
-  <div :id="'contextMenu'+id" class="file">
+  <div :id="'fileContextMenu'+id" class="file">
     <span v-show="showName" @dblclick.prevent.self="showTextInput">{{name}}</span>
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="nameChanged" />
     <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
     <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" />
-    <ejs-contextmenu :target="'#contextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+    <ejs-contextmenu :target="'#fileContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
 
