@@ -1,7 +1,13 @@
 <template>
   <div :id="'subFolderContextMenu'+id" class="subFolder" @dblclick.prevent.self="toggleChildView">
     <span v-show="showName">{{name}}</span>
-    <input v-show="!showName" type="text" v-model="name" @keyup.enter="showNameInput" />
+    <input
+      v-show="!showName"
+      type="text"
+      v-model="name"
+      @keyup.enter="showNameInput"
+      placeholder="Type the subfolder name here, then press enter"
+    />
     <div v-show="showFiles">
       <File
         v-for="(file,index) in files"

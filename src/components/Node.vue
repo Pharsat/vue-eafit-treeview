@@ -6,7 +6,7 @@
       type="text"
       v-model="name"
       @keyup.enter="showNameInput"
-      placeholder="Enter the node name here, then press enter"
+      placeholder="Type the tree name here, then press enter"
     />
     <div v-show="showSubFolders">
       <SubFolder
