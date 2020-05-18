@@ -59,7 +59,7 @@ export default {
       this.$emit("deleteSubFolder", this.index);
     },
     deleteFile(index) {
-      this.files.splice(index, 1);
+      this.$delete(this.files, index);
     },
     me() {
       return {

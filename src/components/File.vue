@@ -4,6 +4,7 @@
     <input v-show="!showName" type="text" v-model="name" @keyup.enter="nameChanged" />
     <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
     <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" />
+    <button @click="deleteMySelf">Delete</button>
     <ejs-contextmenu :target="'#'+uniqueName" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
