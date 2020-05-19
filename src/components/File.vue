@@ -1,11 +1,16 @@
 <template>
-  <div :id="uniqueName" class="file">
+  <div :id="'fileContextMenu'+id" class="file">
     <span v-show="showName" @dblclick.prevent.self="showTextInput">{{name}}</span>
-    <input v-show="!showName" type="text" v-model="name" @keyup.enter="nameChanged" />
+    <input
+      v-show="!showName"
+      type="text"
+      v-model="name"
+      @keyup.enter="nameChanged"
+      placeholder="Type the file name here, then press enter"
+    />
     <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
     <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" />
-    <button @click="deleteMySelf">Delete</button>
-    <ejs-contextmenu :target="'#'+uniqueName" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+    <ejs-contextmenu :target="'#fileContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
   </div>
 </template>
 
@@ -18,8 +23,8 @@ Vue.use(ContextMenuPlugin);
 export default {
   name: "File",
   props: {
-    index: Number,
-    file: Object
+    file: Object,
+    index: Number
   },
   data() {
     return {
@@ -36,7 +41,7 @@ export default {
           text: "Modify file"
         }
       ],
-      uniqueName: "file" + this.index
+      id: this.file.id
     };
   },
   methods: {
@@ -55,7 +60,7 @@ export default {
       this.showText = this.showTextArea ? this.showText : !this.showText;
     },
     deleteMySelf() {
-      this.$emit("deleteFile", this.index);
+      this.$emit("deleteFile", this.me());
     },
     showEditText() {
       this.showTextArea = true;
@@ -63,6 +68,7 @@ export default {
     },
     me() {
       return {
+        id: this.id,
         name: this.name,
         text: this.text
       };

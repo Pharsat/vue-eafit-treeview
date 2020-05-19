@@ -1,11 +1,10 @@
 <template>
   <div class="treeView">
     <button @click="createNewNode" :disabled="this.nodes.length > 0">Create root node</button>
-    <button @click="storeJson">Store to local storage</button>
     <br />
     <Node
       v-for="(node, index) in nodes"
-      v-bind:key="index"
+      v-bind:key="node.id"
       v-bind:node="node"
       v-bind:index="index"
       v-on:updateNode="updateNode"
@@ -29,17 +28,25 @@ export default {
   },
   methods: {
     createNewNode() {
+      var nextIds = this.nodes.map(function(file) {
+        return file.id;
+      });
+      var maxCollection = [...nextIds, 0];
       var newNode = {
+        id: Math.max.apply(Math, maxCollection) + 1,
         name: "",
         subFolders: []
       };
       this.nodes.push(newNode);
     },
     updateNode(node, index) {
-      this.nodes[index] = node;
+      this.$set(this.nodes, index, node);
+      this.storeJson();
     },
-    deleteNode(index) {
-      this.nodes.splice(index, 1);
+    deleteNode(node) {
+      this.nodes = this.nodes.filter(function(item) {
+        return item.id != node.id;
+      });
     },
     storeJson() {
       localStorage.setItem("treeView", JSON.stringify(this.nodes));
