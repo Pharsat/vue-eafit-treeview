@@ -1,15 +1,21 @@
 <template>
-  <div>
-    <div :id="'nodeContextMenu'+id" class="node" @dblclick.prevent.self="toggleChildView">
-      <span v-show="showName">{{name}}</span>
-      <input
-        v-show="!showName"
-        type="text"
-        v-model="name"
-        @keyup.enter="showNameInput"
-        placeholder="Type the tree name here, then press enter"
-      />
-      <ejs-contextmenu :target="'#nodeContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+  <div class="node">    
+    <div class="div-name" :id="'nodeContextMenu'+id"  @dblclick.prevent.self="toggleChildView">
+      <div class="div-icon">
+        <img class="icon" src="../assets/closed-folder.png" v-show="!showSubFolders"/>
+        <img class="icon" src="../assets/opened-folder.png" v-show="showSubFolders"/>
+      </div>
+      <div style="width:100%; padding:5px;" >
+        <span v-show="showName">{{name}}</span>
+        <input 
+          v-show="!showName"
+          type="text"
+          v-model="name"
+          @keyup.enter="showNameInput"
+          placeholder="Type the tree name here, then press enter"
+        />
+        <ejs-contextmenu :target="'#nodeContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+      </div>
     </div>
    
     <div v-show="showSubFolders">
@@ -111,5 +117,17 @@ export default {
 .node {
   width: 100%;
   background-color: darkgreen;
+  min-height: 34px;
 }
-</style>>
+.icon{
+  max-height: 24px;
+  margin: 5px;
+}
+.div-icon{
+  float: left;
+  width: 34px;
+}
+.div-name{
+  width: 100%;
+}
+</style>

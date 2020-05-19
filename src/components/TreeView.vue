@@ -59,5 +59,6 @@ export default {
 .treeView {
   width: 100%;
   background-color: deeppink;
+  text-align: left;
 }
 </style>>
