@@ -2,11 +2,7 @@
   <div class="file">
     <div class="div-row" :id="'fileContextMenu'+id">
       <div class="div-icon" @dblclick.prevent.self="showTextInput">
-        <img
-          class="icon"
-          src="../assets/file.png"
-          @dblclick.prevent.self="toggleChildView"
-        />
+        <img class="icon" src="../assets/file.png" @dblclick.prevent.self="showTextInput" />
       </div>
       <div class="div-name" @dblclick.prevent.self="showTextInput">
         <span v-show="showName">{{name}}</span>
@@ -18,8 +14,13 @@
           placeholder="Type the file name here, then press enter"
         />
         <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
-        <br/>
-        <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" placeholder="Type the file content here, then press enter." />
+        <br />
+        <textarea
+          v-show="showTextArea"
+          v-model="text"
+          @keyup.enter="textChanged"
+          placeholder="Type the file content here, then press enter."
+        />
         <ejs-contextmenu :target="'#fileContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
       </div>
     </div>
@@ -91,6 +92,25 @@ export default {
       } else if (args.item.text === this.menuItems[1].text) {
         this.showEditText();
       }
+    },
+    storeJson() {
+      console.log("emite desde file");
+      this.$emit("storeJson");
+    }
+  },
+  watch: {
+    name: {
+      handler: function() {
+        console.log("nombre cambió");
+        this.storeJson();
+      },
+      deep: true
+    },
+    text: {
+      handler: function() {
+        this.storeJson();
+      },
+      deep: true
     }
   }
 };

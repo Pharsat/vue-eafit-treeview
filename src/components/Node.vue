@@ -35,6 +35,7 @@
         v-bind:index="index"
         v-on:updateSubFolder="updateSubFolder"
         v-on:deleteSubFolder="deleteSubFolder"
+        v-on:storeJson="storeJson"
       />
     </div>
   </div>
@@ -110,7 +111,6 @@ export default {
     },
     toggleChildView() {
       this.showSubFolders = !this.showSubFolders;
-      console.log("cambie");
     },
     onSelect: function(args) {
       if (args.item.text === this.menuItems[0].text) {
@@ -118,6 +118,18 @@ export default {
       } else if (args.item.text === this.menuItems[1].text) {
         this.createNewSubFolder();
       }
+    },
+    storeJson() {
+      console.log("emite desde node");
+      this.$emit("storeJson");
+    }
+  },
+  watch: {
+    subFolders: {
+      handler: function() {
+        this.storeJson();
+      },
+      deep: true
     }
   }
 };
