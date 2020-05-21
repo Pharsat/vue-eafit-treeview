@@ -83,7 +83,7 @@ export default {
       });
       var maxCollection = [...nextIds, 0];
       var newFile = {
-        id: Math.max.apply(Math, maxCollection) + 1,
+        id: this.id + "file" + (Math.max.apply(Math, maxCollection) + 1),
         name: "",
         text: ""
       };

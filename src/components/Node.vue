@@ -83,7 +83,7 @@ export default {
       });
       var maxCollection = [...nextIds, 0];
       var newSubFolder = {
-        id: Math.max.apply(Math, maxCollection) + 1,
+        id: this.id + "subFolder" + (Math.max.apply(Math, maxCollection) + 1),
         name: "",
         files: []
       };

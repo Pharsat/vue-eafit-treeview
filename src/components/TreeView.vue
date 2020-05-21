@@ -33,7 +33,7 @@ export default {
       });
       var maxCollection = [...nextIds, 0];
       var newNode = {
-        id: Math.max.apply(Math, maxCollection) + 1,
+        id: "node" + (Math.max.apply(Math, maxCollection) + 1),
         name: "",
         subFolders: []
       };
@@ -47,6 +47,7 @@ export default {
       this.nodes = this.nodes.filter(function(item) {
         return item.id != node.id;
       });
+      this.storeJson();
     },
     storeJson() {
       localStorage.setItem("treeView", JSON.stringify(this.nodes));
@@ -79,7 +80,8 @@ export default {
   box-sizing: border-box;
   padding: 5px;
 }
-input, textarea {
+input,
+textarea {
   width: 100%;
 }
 </style>
