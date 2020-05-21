@@ -1,13 +1,23 @@
 <template>
-  <div class="node">    
-    <div class="div-name" :id="'nodeContextMenu'+id"  @dblclick.prevent.self="toggleChildView">
-      <div class="div-icon">
-        <img class="icon" src="../assets/closed-folder.png" v-show="!showSubFolders"/>
-        <img class="icon" src="../assets/opened-folder.png" v-show="showSubFolders"/>
+  <div class="node">
+    <div class="div-row" :id="'nodeContextMenu'+id">
+      <div class="div-icon" @dblclick.prevent.self="toggleChildView">
+        <img
+          class="icon"
+          src="../assets/closed-folder.png"
+          v-show="!showSubFolders"
+          @dblclick.prevent.self="toggleChildView"
+        />
+        <img
+          class="icon"
+          src="../assets/opened-folder.png"
+          v-show="showSubFolders"
+          @dblclick.prevent.self="toggleChildView"
+        />
       </div>
-      <div style="width:100%; padding:5px;" >
+      <div class="div-name" @dblclick.prevent.self="toggleChildView">
         <span v-show="showName">{{name}}</span>
-        <input 
+        <input
           v-show="!showName"
           type="text"
           v-model="name"
@@ -17,8 +27,7 @@
         <ejs-contextmenu :target="'#nodeContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
       </div>
     </div>
-   
-    <div v-show="showSubFolders">
+    <div class="div-row" v-if="this.subFolders.length > 0" v-show="showSubFolders">
       <SubFolder
         v-for="(subFolder, index) in subFolders"
         v-bind:key="subFolder.id"
@@ -101,6 +110,7 @@ export default {
     },
     toggleChildView() {
       this.showSubFolders = !this.showSubFolders;
+      console.log("cambie");
     },
     onSelect: function(args) {
       if (args.item.text === this.menuItems[0].text) {
@@ -116,18 +126,7 @@ export default {
 <style scoped>
 .node {
   width: 100%;
-  background-color: darkgreen;
-  min-height: 34px;
-}
-.icon{
-  max-height: 24px;
-  margin: 5px;
-}
-.div-icon{
-  float: left;
-  width: 34px;
-}
-.div-name{
-  width: 100%;
+  background-color: #959595;
+  box-sizing: border-box;
 }
 </style>

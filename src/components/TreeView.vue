@@ -55,10 +55,40 @@ export default {
 };
 </script>
 
+<style >
+@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
+
+.icon {
+  max-height: 24px;
+  box-sizing: border-box;
+}
+.div-icon {
+  float: left;
+  margin-right: 5px;
+}
+.div-name {
+  width: auto;
+  overflow: hidden;
+}
+.div-row {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+input, textarea {
+  width: 100%;
+}
+</style>
 <style scoped>
 .treeView {
   width: 100%;
-  background-color: deeppink;
+  box-sizing: border-box;
+  background-color: #dadada;
   text-align: left;
+  padding: 5px;
 }
-</style>>
+</style>

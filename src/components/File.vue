@@ -1,16 +1,28 @@
 <template>
-  <div :id="'fileContextMenu'+id" class="file">
-    <span v-show="showName" @dblclick.prevent.self="showTextInput">{{name}}</span>
-    <input
-      v-show="!showName"
-      type="text"
-      v-model="name"
-      @keyup.enter="nameChanged"
-      placeholder="Type the file name here, then press enter"
-    />
-    <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
-    <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" />
-    <ejs-contextmenu :target="'#fileContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+  <div class="file">
+    <div class="div-row" :id="'fileContextMenu'+id">
+      <div class="div-icon" @dblclick.prevent.self="showTextInput">
+        <img
+          class="icon"
+          src="../assets/file.png"
+          @dblclick.prevent.self="toggleChildView"
+        />
+      </div>
+      <div class="div-name" @dblclick.prevent.self="showTextInput">
+        <span v-show="showName">{{name}}</span>
+        <input
+          v-show="!showName"
+          type="text"
+          v-model="name"
+          @keyup.enter="nameChanged"
+          placeholder="Type the file name here, then press enter"
+        />
+        <p v-show="showText" @dblclick="showTextInput">{{text}}</p>
+        <br/>
+        <textarea v-show="showTextArea" v-model="text" @keyup.enter="textChanged" placeholder="Type the file content here, then press enter." />
+        <ejs-contextmenu :target="'#fileContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -85,13 +97,9 @@ export default {
 </script>
 
 <style scoped>
-@import "../../node_modules/@syncfusion/ej2-base/styles/material.css";
-@import "../../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-@import "../../node_modules/@syncfusion/ej2-inputs/styles/material.css";
-@import "../../node_modules/@syncfusion/ej2-popups/styles/material.css";
-@import "../../node_modules/@syncfusion/ej2-navigations/styles/material.css";
 .file {
   width: 100%;
   background-color: beige;
+  box-sizing: border-box;
 }
 </style>>

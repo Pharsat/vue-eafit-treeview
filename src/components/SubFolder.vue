@@ -1,17 +1,33 @@
 <template>
-  <div  >
-    <div :id="'subFolderContextMenu'+id" class="subFolder" @dblclick.prevent.self="toggleChildView">
-      <span v-show="showName">{{name}}</span>
-      <input
-        v-show="!showName"
-        type="text"
-        v-model="name"
-        @keyup.enter="showNameInput"
-        placeholder="Type the subfolder name here, then press enter"
-      />
-      <ejs-contextmenu :target="'#subFolderContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+  <div class="subFolder">
+    <div class="div-row" :id="'subFolderContextMenu'+id">
+      <div class="div-icon" @dblclick.prevent.self="toggleChildView">
+        <img
+          class="icon"
+          src="../assets/closed-file-cabinet.png"
+          v-show="!showFiles"
+          @dblclick.prevent.self="toggleChildView"
+        />
+        <img
+          class="icon"
+          src="../assets/opened-file-cabinet.png"
+          v-show="showFiles"
+          @dblclick.prevent.self="toggleChildView"
+        />
+      </div>
+      <div class="div-name" @dblclick.prevent.self="toggleChildView">
+        <span v-show="showName">{{name}}</span>
+        <input
+          v-show="!showName"
+          type="text"
+          v-model="name"
+          @keyup.enter="showNameInput"
+          placeholder="Type the subfolder name here, then press enter"
+        />
+        <ejs-contextmenu :target="'#subFolderContextMenu'+id" :items="menuItems" :select="onSelect"></ejs-contextmenu>
+      </div>
     </div>
-    <div v-show="showFiles">
+    <div class="div-row" v-if="this.files.length > 0" v-show="showFiles">
       <File
         v-for="(file,index) in files"
         :key="file.id"
@@ -21,7 +37,6 @@
         v-on:deleteFile="deleteFile"
       />
     </div>
-    
   </div>
 </template>
 <script>
@@ -111,6 +126,7 @@ export default {
 <style scoped>
 .subFolder {
   width: 100%;
-  background-color: chartreuse;
+  background-color: #41a4fc;
+  box-sizing: border-box;
 }
 </style>>
