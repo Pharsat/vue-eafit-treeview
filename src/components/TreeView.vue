@@ -33,7 +33,7 @@ export default {
       });
       var maxCollection = [...nextIds, 0];
       var newNode = {
-        id: (Math.max.apply(Math, maxCollection) + 1),
+        id: Math.max.apply(Math, maxCollection) + 1,
         name: "",
         subFolders: []
       };
@@ -44,7 +44,7 @@ export default {
       this.storeJson();
     },
     deleteNode(node) {
-      this.nodes.splice(this.nodes.indexOf(node), 1);
+      this.nodes.splice(this.$findWithAttr(this.nodes, "id", node.id), 1);
       this.storeJson();
     },
     storeJson() {
@@ -53,7 +53,7 @@ export default {
     }
   },
   watch: {
-    nodes: function (newNodes) {
+    nodes: function(newNodes) {
       localStorage.setItem("treeView", JSON.stringify(newNodes));
     }
   }

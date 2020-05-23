@@ -97,7 +97,10 @@ export default {
       this.$emit("deleteNode", this.me());
     },
     deleteSubFolder(subFolder) {
-      this.subFolders.splice(this.subFolders.indexOf(subFolder), 1);
+      this.subFolders.splice(
+        this.$findWithAttr(this.subFolders, "id", subFolder.id),
+        1
+      );
       this.$emit("updateNode", this.me(), this.index);
     },
     me() {

@@ -97,7 +97,7 @@ export default {
       this.$emit("deleteSubFolder", this.me());
     },
     deleteFile(file) {
-      this.files.splice(this.files.indexOf(file), 1);
+      this.files.splice(this.$findWithAttr(this.files, "id", file.id), 1);
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     me() {
