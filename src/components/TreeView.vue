@@ -23,7 +23,7 @@ export default {
   props: {},
   data() {
     return {
-      nodes: []
+      nodes: this.readJson()
     };
   },
   methods: {
@@ -50,6 +50,12 @@ export default {
     storeJson() {
       console.log("salva", JSON.stringify(this.nodes));
       localStorage.setItem("treeView", JSON.stringify(this.nodes));
+    },
+    readJson() {
+      if (localStorage.getItem("treeView") === null) {
+        localStorage.setItem("treeView", "[]");
+      }
+      return JSON.parse(localStorage.getItem("treeView"));
     }
   },
   watch: {

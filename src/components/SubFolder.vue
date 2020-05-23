@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       showFiles: true,
-      showName: false,
+      showName: this.subFolder.name !== "",
       name: this.subFolder.name,
       files: this.subFolder.files,
       menuItems: [

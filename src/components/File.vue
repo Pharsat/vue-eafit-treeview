@@ -41,8 +41,8 @@ export default {
   },
   data() {
     return {
-      showName: false,
-      showText: false,
+      showName: this.file.name !== "",
+      showText: this.file.text !== "",
       showTextArea: false,
       name: this.file.name,
       text: this.file.text,
