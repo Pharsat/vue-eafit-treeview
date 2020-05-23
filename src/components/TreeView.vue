@@ -33,7 +33,7 @@ export default {
       });
       var maxCollection = [...nextIds, 0];
       var newNode = {
-        id: "node" + (Math.max.apply(Math, maxCollection) + 1),
+        id: (Math.max.apply(Math, maxCollection) + 1),
         name: "",
         subFolders: []
       };

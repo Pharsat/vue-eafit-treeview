@@ -79,11 +79,11 @@ export default {
     },
     createNewFile() {
       var nextIds = this.files.map(function(file) {
-        return file.id;
+        return file.id.split("_")[2];
       });
       var maxCollection = [...nextIds, 0];
       var newFile = {
-        id: this.id + "file" + (Math.max.apply(Math, maxCollection) + 1),
+        id: this.id + "_" + (Math.max.apply(Math, maxCollection) + 1),
         name: "",
         text: ""
       };
