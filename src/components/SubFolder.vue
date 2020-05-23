@@ -35,7 +35,6 @@
         v-bind:file="file"
         v-on:updateFile="updateFile"
         v-on:deleteFile="deleteFile"
-        v-on:storeJson="storeJson"
       />
     </div>
   </div>
@@ -98,9 +97,8 @@ export default {
       this.$emit("deleteSubFolder", this.me());
     },
     deleteFile(file) {
-      this.files = this.files.filter(function(item) {
-        return item.id != file.id;
-      });
+      this.files.splice(this.files.indexOf(file), 1);
+      this.$emit("updateSubFolder", this.me(), this.index);
     },
     me() {
       return {
@@ -118,19 +116,6 @@ export default {
       } else if (args.item.text === this.menuItems[1].text) {
         this.createNewFile();
       }
-    },
-    storeJson() {
-    console.log("emite desde subfolder");
-
-      this.$emit("storeJson");
-    }
-  },
-  watch: {
-    files: {
-      handler: function() {
-        this.storeJson();
-      },
-      deep: true
     }
   }
 };

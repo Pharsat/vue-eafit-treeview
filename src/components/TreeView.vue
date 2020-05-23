@@ -9,7 +9,6 @@
       v-bind:index="index"
       v-on:updateNode="updateNode"
       v-on:deleteNode="deleteNode"
-      v-on:storeJson="storeJson"
     />
   </div>
 </template>
@@ -42,11 +41,11 @@ export default {
     },
     updateNode(node, index) {
       this.$set(this.nodes, index, node);
+      this.storeJson();
     },
     deleteNode(node) {
-      this.nodes = this.nodes.filter(function(item) {
-        return item.id != node.id;
-      });
+      this.nodes.splice(this.nodes.indexOf(node), 1);
+      this.storeJson();
     },
     storeJson() {
       console.log("salva", JSON.stringify(this.nodes));
@@ -88,6 +87,11 @@ export default {
 input,
 textarea {
   width: 100%;
+}
+
+input,
+span {
+  height: 24px;
 }
 </style>
 <style scoped>

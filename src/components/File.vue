@@ -92,25 +92,6 @@ export default {
       } else if (args.item.text === this.menuItems[1].text) {
         this.showEditText();
       }
-    },
-    storeJson() {
-      console.log("emite desde file");
-      this.$emit("storeJson");
-    }
-  },
-  watch: {
-    name: {
-      handler: function() {
-        console.log("nombre cambió");
-        this.storeJson();
-      },
-      deep: true
-    },
-    text: {
-      handler: function() {
-        this.storeJson();
-      },
-      deep: true
     }
   }
 };

@@ -35,7 +35,6 @@
         v-bind:index="index"
         v-on:updateSubFolder="updateSubFolder"
         v-on:deleteSubFolder="deleteSubFolder"
-        v-on:storeJson="storeJson"
       />
     </div>
   </div>
@@ -98,9 +97,8 @@ export default {
       this.$emit("deleteNode", this.me());
     },
     deleteSubFolder(subFolder) {
-      this.subFolders = this.subFolders.filter(function(item) {
-        return item.id != subFolder.id;
-      });
+      this.subFolders.splice(this.subFolders.indexOf(subFolder), 1);
+      this.$emit("updateNode", this.me(), this.index);
     },
     me() {
       return {
@@ -118,18 +116,6 @@ export default {
       } else if (args.item.text === this.menuItems[1].text) {
         this.createNewSubFolder();
       }
-    },
-    storeJson() {
-      console.log("emite desde node");
-      this.$emit("storeJson");
-    }
-  },
-  watch: {
-    subFolders: {
-      handler: function() {
-        this.storeJson();
-      },
-      deep: true
     }
   }
 };
