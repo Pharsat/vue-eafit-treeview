@@ -44,11 +44,12 @@ export default {
       this.storeJson();
     },
     deleteNode(node) {
-      this.nodes.splice(this.$findWithAttr(this.nodes, "id", node.id), 1);
+      this.nodes.splice(
+        this.nodes.findIndex(item => item["id"] == node.id), 1);
       this.storeJson();
     },
     storeJson() {
-      console.log("salva", JSON.stringify(this.nodes));
+      //console.log("salva", JSON.stringify(this.nodes));
       localStorage.setItem("treeView", JSON.stringify(this.nodes));
     },
     readJson() {

@@ -1,17 +1,43 @@
 {
-  "name": "vue-eafit-treeview",
-  "version": "0.1.0",
-  "private": true,
+  "name": "eafit-tree-view",
+  "author": "waruano",
+  "version": "0.0.4",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "components"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build --target lib --name tree-view ./src/index.js",
+    "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "@syncfusion/ej2-vue-navigations": "^18.1.52",
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "main": "./dist/tree-view.common.js",
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-plugin-eslint": "~4.3.0",
@@ -41,3 +67,5 @@
     "not dead"
   ]
 }
+
+

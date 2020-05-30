@@ -98,7 +98,7 @@ export default {
     },
     deleteSubFolder(subFolder) {
       this.subFolders.splice(
-        this.$findWithAttr(this.subFolders, "id", subFolder.id),
+        this.subFolders.findIndex(item => item["id"] == subFolder.id),
         1
       );
       this.$emit("updateNode", this.me(), this.index);
