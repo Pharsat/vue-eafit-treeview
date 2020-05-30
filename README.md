@@ -33,29 +33,31 @@ Formato del arbol json almacenado:
    }
 ]
 ```
+# Instalación
 
+## NPM
+NPM es el método de instalación recomendado para usar eafit-tree-view.
 
-# vue-eafit-treeview
+```console
+npm install eafit-tree-view
+```
+# Uso
 
-## Project setup
-```
-npm install
-```
+Sobre el componente donde usara TreeView importe las siguiente librerias:
 
-### Compiles and hot-reloads for development
+Componente:
+```javascript
+<script>
+...
+import "eafit-tree-view";
+...
+</script>
 ```
-npm run serve
+Estilos:
+```css
+<style [scope]>
+...
+@import url("../../node_modules/eafit-tree-view/dist/tree-view.css");
+...
+</style>
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
