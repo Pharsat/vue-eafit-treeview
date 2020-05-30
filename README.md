@@ -5,8 +5,8 @@ El componente de eafit-tree-view, es una vista de árbol que permite una represe
 Este treeview cuenta con las siguientes especificaciones: 
 
 1. Solo permite la creación de un nodo o rama principal.
-2. Mediante un menú contextual y usando de clic derecho sobre el nodo puede adicionar subcarpetas o eliminar toda la rama y mediante clic derecho observa su contenido.
-3. Las subcarpetas al igual que los nodos contiene un menú contextual (clic derecho) en el cual puede agregar un archivo o eliminar la subcarpeta y observar su contenido con clic derecho.
+2. Mediante un menú contextual y usando de clic derecho sobre el nodo puede adicionar subcarpetas o eliminar toda la rama y mediante doble clic observar su contenido.
+3. Las subcarpetas al igual que los nodos contiene un menú contextual (clic derecho) en el cual puede agregar un archivo o eliminar la subcarpeta y observar su contenido con doble clic.
 4. Los archivos se pueden eliminar o modificar su contenido mediante menú contextual (clic derecho) y ver su contenido con doble clic.
 
 A medida que elimina, crea o modifica los elementos estos cambios se van almacenando en el local store en formato JSON.
