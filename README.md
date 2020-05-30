@@ -46,7 +46,7 @@ npm install eafit-tree-view
 Sobre el componente donde usara TreeView importe las siguiente librerias:
 
 Componente:
-```javascript
+```vue
 <script>
 ...
 import "eafit-tree-view";
@@ -54,10 +54,36 @@ import "eafit-tree-view";
 </script>
 ```
 Estilos:
-```css
+```vue
 <style [scope]>
 ...
 @import url("../../node_modules/eafit-tree-view/dist/tree-view.css");
 ...
 </style>
 ```
+
+# Ejemplo de uso de TreeView en un componente Vue
+```vue
+<template>
+  <div class="hello">
+    <div style="width:500px;margin-left:auto;margin-right:auto;">
+      <TreeView />
+    </div>
+  </div>
+</template>
+
+<script>
+import "eafit-tree-view";
+export default {
+  name: "HelloWorld"
+};
+</script>
+
+<style>
+</style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+@import url("../../node_modules/eafit-tree-view/dist/tree-view.css");
+</style>
+```
+
