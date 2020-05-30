@@ -5,11 +5,12 @@ El componente de eafit-tree-view, es una vista de árbol que permite una represe
 Este treeview cuenta con las siguientes especificaciones: 
 
 1. Solo permite la creación de un nodo o rama principal.
-2. Mediante un menú contextual y usando de clic derecho sobre el nodo puede adicionar subcarpetas o eliminar toda la rama.
-3. Las subcarpetas al igual que los notos contiene un menú contextual en el cual puede agregar un archivo o eliminar la subcarpeta.
-4. Los archivos se pueden eliminar (clic derecho), se puede modificar su contenido (clic derecho) y ver su contenido (doble clic).
+2. Mediante un menú contextual y usando de clic derecho sobre el nodo puede adicionar subcarpetas o eliminar toda la rama y mediante clic derecho observa su contenido.
+3. Las subcarpetas al igual que los nodos contiene un menú contextual (clic derecho) en el cual puede agregar un archivo o eliminar la subcarpeta y observar su contenido con clic derecho.
+4. Los archivos se pueden eliminar o modificar su contenido mediante menú contextual (clic derecho) y ver su contenido con doble clic.
 
 A medida que elimina, crea o modifica los elementos estos cambios se van almacenando en el local store en formato JSON.
+
 
 Formato del arbol json almacenado:
 ```json
@@ -36,7 +37,7 @@ Formato del arbol json almacenado:
 # Instalación
 
 ## NPM
-NPM es el método de instalación recomendado para usar eafit-tree-view. (from [NPM](https://www.npmjs.com/package/eafit-tree-view))
+NPM es el método de instalación recomendado para usar eafit-tree-view.
 
 ```console
 npm install eafit-tree-view
