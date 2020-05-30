@@ -36,7 +36,7 @@ Formato del arbol json almacenado:
 # Instalación
 
 ## NPM
-NPM es el método de instalación recomendado para usar eafit-tree-view.
+NPM es el método de instalación recomendado para usar eafit-tree-view. (from [NPM](https://www.npmjs.com/package/eafit-tree-view))
 
 ```console
 npm install eafit-tree-view
