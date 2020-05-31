@@ -87,4 +87,5 @@ export default {
 @import url("../../node_modules/eafit-tree-view/dist/tree-view.css");
 </style>
 ```
+![ScreenShot](https://github.com/Pharsat/vue-eafit-treeview/blob/master/ejemplo.PNG)
 
