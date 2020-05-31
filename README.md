@@ -21,7 +21,7 @@ Formato del arbol json almacenado:
       "subFolders":[               //Subfolder asociados 
          {
             "id":"1_1",             //identificador del subfolder (1 digito indica el id del nodo al cual esta asociado,2 digito identifica al folder)   
-            "name":"Sub folder",    // nombre del folder 
+            "name":"Subfolder",    // nombre del folder 
             "files":[               //archivos asociados al subfolder
                {
                   "id":"1_1_1",     // identificador del archivo  (1 digito indica el id del nodo al cual esta asociado,2 digito indica el id del subfolder al cual esta asociado, 3 digito identificador del archivo)
