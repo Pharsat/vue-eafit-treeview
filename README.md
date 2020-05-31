@@ -87,5 +87,34 @@ export default {
 @import url("../../node_modules/eafit-tree-view/dist/tree-view.css");
 </style>
 ```
-![ScreenShot](https://github.com/Pharsat/vue-eafit-treeview/blob/master/ejemplo.PNG)
+## Ejemplo de implementación
 
+![Alt text](https://github.com/Pharsat/vue-eafit-treeview/blob/master/ejemplo.PNG)
+
+## Ejemplo JSON generado
+```json
+[
+   {
+      "id":1,
+      "name":"Root",
+      "subFolders":[
+         {
+            "id":"1_1",
+            "name":"Subfolder",
+            "files":[
+               {
+                  "id":"1_1_1",
+                  "name":"File1",
+                  "text":"TODO LO QUE SE PUEDE IMAGINAR ES REAL\n"
+               },
+               {
+                  "id":"1_1_2",
+                  "name":"File2",
+                  "text":"¿Hasta qué punto lo que imaginamos es menos real que lo que percibimos a través de los sentidos?\n"
+               }
+            ]
+         }
+      ]
+   }
+]
+```
