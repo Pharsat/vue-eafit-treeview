@@ -13,20 +13,20 @@ A medida que elimina, crea o modifica los elementos estos cambios se van almacen
 
 
 Formato del arbol json almacenado:
-```json
+```vue
 [
    {
-      "id":1,
-      "name":"Root",
-      "subFolders":[
+      "id":1,                      // identificador del nodo
+      "name":"Root",               // nombre del nodo
+      "subFolders":[               //Subfolder asociados 
          {
-            "id":"1_1",
-            "name":"Sub folder",
-            "files":[
+            "id":"1_1",             //identificador del subfolder (1 digito indica el id del nodo al cual esta asociado,2 digito identifica al folder)   
+            "name":"Sub folder",    // nombre del folder 
+            "files":[               //archivos asociados al subfolder
                {
-                  "id":"1_1_1",
-                  "name":"File",
-                  "text":""
+                  "id":"1_1_1",     // identificador del archivo  (1 digito indica el id del nodo al cual esta asociado,2 digito indica el id del subfolder al cual esta asociado, 3 digito identificador del archivo)
+                  "name":"File",    //nombre del archivo 
+                  "text":""         //contenido del archivo 
                }
             ]
          }
