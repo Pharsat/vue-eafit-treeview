@@ -100,6 +100,15 @@ input,
 span {
   height: 24px;
 }
+.subFolderStyle {
+  background-color: #41a4fc;
+}
+.nodeStyle {
+  background-color: #959595;
+}
+.fileStyle {
+  background-color: beige;
+}
 </style>
 <style scoped>
 .treeView {

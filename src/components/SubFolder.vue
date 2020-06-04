@@ -1,5 +1,5 @@
 <template>
-  <div class="subFolder">
+  <div class="subFolder subFolderStyle">
     <div class="div-row" :id="'subFolderContextMenu'+id">
       <div class="div-icon" @dblclick.prevent.self="toggleChildView">
         <img
@@ -126,7 +126,6 @@ export default {
 <style scoped>
 .subFolder {
   width: 100%;
-  background-color: #41a4fc;
   box-sizing: border-box;
 }
-</style>>
+</style>

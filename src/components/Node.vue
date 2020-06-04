@@ -1,5 +1,5 @@
 <template>
-  <div class="node">
+  <div class="node nodeStyle">
     <div class="div-row" :id="'nodeContextMenu'+id">
       <div class="div-icon" @dblclick.prevent.self="toggleChildView">
         <img
@@ -127,7 +127,6 @@ export default {
 <style scoped>
 .node {
   width: 100%;
-  background-color: #959595;
   box-sizing: border-box;
 }
 </style>

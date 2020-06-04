@@ -1,5 +1,5 @@
 <template>
-  <div class="file">
+  <div class="file fileStyle">
     <div class="div-row" :id="'fileContextMenu'+id">
       <div class="div-icon" @dblclick.prevent.self="showTextInput">
         <img class="icon" src="../assets/file.png" @dblclick.prevent.self="showTextInput" />
@@ -100,7 +100,6 @@ export default {
 <style scoped>
 .file {
   width: 100%;
-  background-color: beige;
   box-sizing: border-box;
 }
-</style>>
+</style>
