@@ -15,6 +15,7 @@
   "dependencies": {
     "@syncfusion/ej2-vue-navigations": "^18.1.52",
     "core-js": "^3.6.4",
+    "lint-staged": "^10.2.9",
     "vue": "^2.6.11"
   },
   "gitHooks": {
@@ -67,5 +68,3 @@
     "not dead"
   ]
 }
-
-
