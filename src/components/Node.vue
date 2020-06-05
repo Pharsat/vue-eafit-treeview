@@ -4,13 +4,13 @@
       <div class="div-icon" @dblclick.prevent.self="toggleChildView">
         <img
           class="icon"
-          src="../assets/closed-folder.png"
+          src="../assets/closed-file-cabinet.png"
           v-show="!showSubFolders"
           @dblclick.prevent.self="toggleChildView"
         />
         <img
           class="icon"
-          src="../assets/opened-folder.png"
+          src="../assets/opened-file-cabinet.png"
           v-show="showSubFolders"
           @dblclick.prevent.self="toggleChildView"
         />
