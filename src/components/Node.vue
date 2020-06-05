@@ -79,13 +79,15 @@ export default {
     },
     createNewSubFolder() {
       var nextIds = this.subFolders.map(function(subFolder) {
-        return subFolder.id.split("_")[1];
+        var idsComposition = subFolder.id.split("_");
+        return idsComposition[idsComposition.length - 1];
       });
       var maxCollection = [...nextIds, 0];
       var newSubFolder = {
         id: this.id + "_" + (Math.max.apply(Math, maxCollection) + 1),
         name: "",
-        files: []
+        files: [],
+        subFolders: []
       };
       this.subFolders.push(newSubFolder);
     },

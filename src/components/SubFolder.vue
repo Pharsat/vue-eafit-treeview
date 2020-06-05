@@ -37,6 +37,17 @@
         v-on:deleteFile="deleteFile"
       />
     </div>
+    <br v-show="this.subFolders.length > 0" />
+    <div class="div-row" v-if="this.subFolders.length > 0" v-show="showFiles">
+      <SubFolder
+        v-for="(subFolder, index) in subFolders"
+        v-bind:key="subFolder.id"
+        v-bind:subFolder="subFolder"
+        v-bind:index="index"
+        v-on:updateSubFolder="updateSubFolder"
+        v-on:deleteSubFolder="deleteSubFolder"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -61,12 +72,16 @@ export default {
       showName: this.subFolder.name !== "",
       name: this.subFolder.name,
       files: this.subFolder.files,
+      subFolders: this.subFolder.subFolders,
       menuItems: [
         {
           text: "Delete subfolder"
         },
         {
           text: "Add file"
+        },
+        {
+          text: "Add subfolder"
         }
       ],
       id: this.subFolder.id
@@ -78,16 +93,21 @@ export default {
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     createNewFile() {
-      var nextIds = this.files.map(function(file) {
-        return file.id.split("_")[2];
-      });
-      var maxCollection = [...nextIds, 0];
       var newFile = {
-        id: this.id + "_" + (Math.max.apply(Math, maxCollection) + 1),
+        id: this.id + "_" + this.getNextId(),
         name: "",
         text: ""
       };
       this.files.push(newFile);
+    },
+    createNewSubFolder() {
+      var newSubFolder = {
+        id: this.id + "_" + this.getNextId(),
+        name: "",
+        files: [],
+        subFolders: []
+      };
+      this.subFolders.push(newSubFolder);
     },
     updateFile(file, index) {
       this.$set(this.files, index, file);
@@ -98,15 +118,17 @@ export default {
     },
     deleteFile(file) {
       this.files.splice(
-        this.files.findIndex(item => item["id"] == file.id)
-      , 1);
+        this.files.findIndex(item => item["id"] == file.id),
+        1
+      );
       this.$emit("updateSubFolder", this.me(), this.index);
     },
     me() {
       return {
         id: this.id,
         name: this.name,
-        files: this.files
+        files: this.files,
+        subFolders: this.subFolders
       };
     },
     toggleChildView() {
@@ -117,7 +139,32 @@ export default {
         this.deleteMySelf();
       } else if (args.item.text === this.menuItems[1].text) {
         this.createNewFile();
+      } else if (args.item.text === this.menuItems[2].text) {
+        this.createNewSubFolder();
       }
+    },
+    getNextId() {
+      var fileNextIds = this.files.map(function(file) {
+        var idsComposition = file.id.split("_");
+        return idsComposition[idsComposition.length - 1];
+      });
+      var subFolderNextIds = this.subFolders.map(function(subFolder) {
+        var idsComposition = subFolder.id.split("_");
+        return idsComposition[idsComposition.length - 1];
+      });
+      var maxCollection = [...fileNextIds, ...subFolderNextIds, 0];
+      return Math.max.apply(Math, maxCollection) + 1;
+    },
+    updateSubFolder(subFolder, index) {
+      this.$set(this.subFolders, index, subFolder);
+      this.$emit("updateSubFolder", this.me(), this.index);
+    },
+    deleteSubFolder(subFolder) {
+      this.subFolders.splice(
+        this.subFolders.findIndex(item => item["id"] == subFolder.id),
+        1
+      );
+      this.$emit("updateSubFolder", this.me(), this.index);
     }
   }
 };
