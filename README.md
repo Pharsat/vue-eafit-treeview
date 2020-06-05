@@ -121,6 +121,7 @@ Por ejemplo:
 ```
 
 Resulta en:
+![Alt text](https://github.com/Pharsat/vue-eafit-treeview/blob/master/Style1.PNG)
 
 
 # Ejemplo de uso de TreeView en un componente Vue
