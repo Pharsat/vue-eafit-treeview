@@ -122,7 +122,7 @@ Por ejemplo:
 
 Resulta en:
 
-![Style1](https://github.com/Pharsat/vue-eafit-treeview/blob/master/Style1.PNG)
+![Style1](https://github.com/Pharsat/vue-eafit-treeview/blob/master/Style2.PNG)
 
 # Ejemplo de uso de TreeView en un componente Vue
 ```vue
