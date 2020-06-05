@@ -66,7 +66,7 @@ Estilos:
 
 ## Adiccionar carpetas dentro de carpetas
 
-Por defecto el componente no permite la creacion de carpetas dentro de carpetas, para tener control sobre esto, debe configurar el componente asi:
+Por defecto el componente no permite la creacion de carpetas dentro de carpetas, para tener control sobre esto, debe configurar el componente así:
 
 ```vue
 ...
@@ -74,8 +74,29 @@ Por defecto el componente no permite la creacion de carpetas dentro de carpetas,
 ...
 ```
 
+Tambien puede vincular dinamicamente esta configuración:
+
+```vue
+...
+<TreeView v-bind:allowSubFoldersIntoSubFoldersAddition="myDinamicValue" />
+...
+```
+
 ## Configurar los estilos
 
+Puede sobreescribir los estilos presentados a continuación para configurar el aspecto de los diferentes niveles del tree view, es un aspecto de personalización que le permitirá adaptar el componente a los estilos que maneja su contenedor: 
+
+```css
+.subFolderStyle {
+  background-color: #41a4fc;
+}
+.nodeStyle {
+  background-color: #959595;
+}
+.fileStyle {
+  background-color: beige;
+}
+```
 
 # Ejemplo de uso de TreeView en un componente Vue
 ```vue
