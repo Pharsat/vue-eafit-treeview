@@ -46,6 +46,7 @@
         v-bind:index="index"
         v-on:updateSubFolder="updateSubFolder"
         v-on:deleteSubFolder="deleteSubFolder"
+        v-bind:allowSubFoldersIntoSubFoldersAddition="allowSubFoldersIntoSubFoldersAddition"
       />
     </div>
   </div>
@@ -64,7 +65,11 @@ export default {
   },
   props: {
     index: Number,
-    subFolder: Object
+    subFolder: Object,
+    allowSubFoldersIntoSubFoldersAddition: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -73,17 +78,7 @@ export default {
       name: this.subFolder.name,
       files: this.subFolder.files,
       subFolders: this.subFolder.subFolders,
-      menuItems: [
-        {
-          text: "Delete subfolder"
-        },
-        {
-          text: "Add file"
-        },
-        {
-          text: "Add subfolder"
-        }
-      ],
+      menuItems: this.getContextMenuItems(),
       id: this.subFolder.id
     };
   },
@@ -165,6 +160,20 @@ export default {
         1
       );
       this.$emit("updateSubFolder", this.me(), this.index);
+    },
+    getContextMenuItems() {
+      var menuItems = [
+        {
+          text: "Delete subfolder"
+        },
+        {
+          text: "Add file"
+        }
+      ];
+      if (this.allowSubFoldersIntoSubFoldersAddition) {
+        menuItems.push({ text: "Add subfolder" });
+      }
+      return menuItems;
     }
   }
 };

@@ -9,6 +9,7 @@
       v-bind:index="index"
       v-on:updateNode="updateNode"
       v-on:deleteNode="deleteNode"
+      v-bind:allowSubFoldersIntoSubFoldersAddition="allowSubFoldersIntoSubFoldersAddition"
     />
   </div>
 </template>
@@ -20,7 +21,12 @@ export default {
   components: {
     Node
   },
-  props: {},
+  props: {
+    allowSubFoldersIntoSubFoldersAddition: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       nodes: this.readJson()
@@ -45,11 +51,12 @@ export default {
     },
     deleteNode(node) {
       this.nodes.splice(
-        this.nodes.findIndex(item => item["id"] == node.id), 1);
+        this.nodes.findIndex(item => item["id"] == node.id),
+        1
+      );
       this.storeJson();
     },
     storeJson() {
-      //console.log("salva", JSON.stringify(this.nodes));
       localStorage.setItem("treeView", JSON.stringify(this.nodes));
     },
     readJson() {

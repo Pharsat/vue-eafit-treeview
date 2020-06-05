@@ -35,6 +35,7 @@
         v-bind:index="index"
         v-on:updateSubFolder="updateSubFolder"
         v-on:deleteSubFolder="deleteSubFolder"
+        v-bind:allowSubFoldersIntoSubFoldersAddition="allowSubFoldersIntoSubFoldersAddition"
       />
     </div>
   </div>
@@ -53,7 +54,11 @@ export default {
   },
   props: {
     index: Number,
-    node: Object
+    node: Object,
+    allowSubFoldersIntoSubFoldersAddition: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
