@@ -97,6 +97,31 @@ Puede sobreescribir los estilos presentados a continuación para configurar el a
   background-color: beige;
 }
 ```
+Por ejemplo:
+
+```css
+.subFolderStyle {
+  background-color: pink;
+  color:black;
+
+  font-family: 'Courier New', Courier, monospace;
+}
+.nodeStyle {
+  background-color:purple;
+  color:white;
+  font-family:'Times New Roman', Times, serif;
+
+}
+.fileStyle {
+  background-color: beige;
+  font-weight: bold;
+  color:black;
+
+}
+```
+
+Resulta en:
+
 
 # Ejemplo de uso de TreeView en un componente Vue
 ```vue
